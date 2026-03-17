@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temario Mailpit - Presentación</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+        .presentation {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            background-color: white;
+            padding: 50px;
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 2em;
+            line-height: 1.5;
+        }
+        .slide.active {
+            display: block;
+        }
+        .slide h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .slide h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .slide ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .slide li {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+        .slide strong {
+            font-weight: bold;
+        }
+        .nav-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10;
+        }
+        .nav-buttons button {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        .slide-number {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <div class="slide active" id="slide-1">
+            <h1>📧 Temario para aprender Mailpit</h1>
+        </div>
+        <div class="slide" id="slide-2">
+            <h2>1️⃣ Introducción a Mailpit</h2>
+            <ul>
+                <li>Qué es <strong>Mailpit</strong></li>
+                <li>Para qué se usa en desarrollo y QA</li>
+                <li>Diferencia entre <strong>SMTP real y SMTP de testing</strong></li>
+                <li>Diferencias entre <strong>Mailpit y MailHog</strong></li>
+            </ul>
+        </div>
+        <div class="slide" id="slide-3">
+            <h2>2️⃣ Instalación de Mailpit</h2>
+            <ul>
+                <li>Instalación en <strong>Linux</strong></li>
+                <li>Instalación en <strong>Windows</strong></li>
+                <li>Instalación con <strong>Docker</strong></li>
+                <li>Verificar que Mailpit está funcionando</li>
+                <li>Acceder a la interfaz web</li>
+            </ul>
+        </div>
+        </div>
+        <div class="slide" id="slide-4">
+            <h2>3️⃣ Interfaz de Mailpit</h2>
+            <ul>
+                <li>Panel principal</li>
+                <li>Bandeja de correos capturados</li>
+                <li>Visualizar correo HTML</li>
+                <li>Ver encabezados del correo</li>
+                <li>Buscar correos</li>
+            </ul>
+        </div>
+        <div class="slide" id="slide-5">
+            <h2>4️⃣ Configuración SMTP</h2>
+            <ul>
+                <li>Qué es <strong>SMTP</strong></li>
+                <li>Configurar aplicaciones para enviar correos a Mailpit</li>
+                <li>Puertos de Mailpit</li>
+                <li>Prueba de envío de correo</li>
+            </ul>
+        </div>
+        <div class="slide" id="slide-6">
+            <h2>5️⃣ Enviar correos desde aplicaciones</h2>
+            <ul>
+                <li>Ejemplo con <strong>Python</strong></li>
+                <li>Ejemplo con <strong>Node.js</strong></li>
+                <li>Ejemplo con <strong>Java</strong></li>
+                <li>Ejemplo con <strong>PHP</strong></li>
+            </ul>
+        </div>
+        <div class="slide" id="slide-7">
+            <h2>6️⃣ Uso de Mailpit en QA</h2>
+            <ul>
+                <li>Probar registro de usuarios</li>
+                <li>Probar recuperación de contraseña</li>
+                <li>Validar correos automáticos</li>
+                <li>Verificar enlaces dentro del email</li>
+            </ul>
+        </div>
+        <div class="slide" id="slide-8">
+            <h2>7️⃣ Automatización con Mailpit</h2>
+            <ul>
+                <li>Uso de <strong>API de Mailpit</strong></li>
+                <li>Leer correos desde pruebas automatizadas</li>
+                <li>Integración con:</li>
+                <ul>
+                    <li>Selenium</li>
+                    <li>Playwright</li>
+                    <li>Cypress</li>
+                </ul>
+            </ul>
+        </div>
+        <div class="slide" id="slide-9">
+            <h2>8️⃣ Mailpit con Docker</h2>
+            <ul>
+                <li>Ejecutar Mailpit con Docker</li>
+                <li>Integrarlo con <strong>docker-compose</strong></li>
+                <li>Usarlo en entornos de desarrollo</li>
+            </ul>
+        </div>
+        </div>
+    </div>
+    <div class="nav-buttons">
+        <button id="prev">⬅️ Atrás</button>
+        <button id="next">Adelante ➡️</button>
+    </div>
+    <div class="slide-number" id="slide-number">1 / 9</div>
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 9;
+        const slides = document.querySelectorAll('.slide');
+        const slideNumber = document.getElementById('slide-number');
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            document.getElementById(`slide-${n}`).classList.add('active');
+            slideNumber.textContent = `${n} / ${totalSlides}`;
+        }
+
+        document.getElementById('next').addEventListener('click', () => {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        });
+
+        document.getElementById('prev').addEventListener('click', () => {
+            if (currentSlide > 1) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                document.getElementById('next').click();
+            } else if (e.key === 'ArrowLeft') {
+                document.getElementById('prev').click();
+            }
+        });
+    </script>
+</body>
+</html>
